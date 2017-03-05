@@ -2,6 +2,7 @@ package com.example.helloworld.resources;
 
 import com.example.helloworld.core.Saying;
 import com.example.helloworld.permutations.Permutate;
+import com.example.helloworld.permutations.PermutateV2;
 import com.google.common.base.Optional;
 import com.codahale.metrics.annotation.Timed;
 
@@ -36,6 +37,14 @@ public class HelloWorldResource {
     @Path("/perms")
     public List<String> calcPermutation(@QueryParam("input") String input) {
         Permutate permutate = new Permutate();
+        return permutate.calcuatePermutations(input);
+    }
+
+    @GET
+    @Timed
+    @Path("/permsV2")
+    public List<String> calcPermutationV2(@QueryParam("input") String input) {
+        PermutateV2 permutate = new PermutateV2();
         return permutate.calcuatePermutations(input);
     }
 }

@@ -30,6 +30,25 @@ public class PermutateTest {
     }
 
     @Test
+    public void smallPermutationsTests() {
+        Permutate permutate = new Permutate();
+        ArrayList<String> results = permutate.calcuatePermutations("A");
+        assertEquals(ImmutableList.of("A"), results);
+
+        results = permutate.calcuatePermutations("AB");
+        assertEquals(ImmutableList.of("AB", "BA"), results);
+
+        results = permutate.calcuatePermutations("AA");
+        assertEquals(ImmutableList.of("AA", "AA"), results);
+
+        results = permutate.calcuatePermutations("ABC");
+        assertEquals(
+                ImmutableList.of("ABC", "ACB", "BAC", "BCA", "CAB", "CBA"),
+                results
+        );
+    }
+
+    @Test
     public void calcRecurBasic() {
         Permutate permutate = new Permutate();
         ArrayList<String> results = new ArrayList<>();
@@ -70,7 +89,8 @@ public class PermutateTest {
         );
         assertEquals(
                 ImmutableList.of("ABC", "ACB", "BAC", "BCA", "CAB", "CBA"),
-                results);
+                results
+        );
     }
 
     @Test
