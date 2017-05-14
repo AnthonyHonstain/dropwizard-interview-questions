@@ -56,20 +56,14 @@ public class HelloWorldResource {
     public String permutationCompare(@QueryParam("string1") String string1, @QueryParam("string2") String string2) {
         Map<Character, PermValue> freq = new HashMap<>();
         for (Character key : string1.toCharArray()) {
-            if (!freq.containsKey(key)) {
-                freq.put(key, new PermValue(1, 0));
-            }
-            else {
-                freq.get(key).setString1Value(freq.get(key).getString1Value() + 1);
-            }
+            PermValue value = freq.getOrDefault(key, new PermValue(0, 0));
+            value.setString1Value(value.getString1Value() + 1);
+            freq.put(key, value);
         }
         for (Character key : string2.toCharArray()) {
-            if (!freq.containsKey(key)) {
-                return Boolean.FALSE.toString();
-            }
-            else {
-                freq.get(key).setString2Value(freq.get(key).getString2Value() + 1);
-            }
+            PermValue value = freq.getOrDefault(key, new PermValue(0, 0));
+            value.setString2Value(value.getString2Value() + 1);
+            freq.put(key, value);
         }
         for (Character key : freq.keySet()) {
             PermValue value = freq.get(key);
