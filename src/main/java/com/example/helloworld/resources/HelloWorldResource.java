@@ -8,7 +8,9 @@ import com.codahale.metrics.annotation.Timed;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 
@@ -46,5 +48,60 @@ public class HelloWorldResource {
     public List<String> calcPermutationV2(@QueryParam("input") String input) {
         PermutateV2 permutate = new PermutateV2();
         return permutate.calcuatePermutations(input);
+    }
+
+    @GET
+    @Timed
+    @Path("/permutationCompare")
+    public String permutationCompare(@QueryParam("string1") String string1, @QueryParam("string2") String string2) {
+        Map<Character, PermValue> freq = new HashMap<>();
+        for (Character key : string1.toCharArray()) {
+            if (!freq.containsKey(key)) {
+                freq.put(key, new PermValue(1, 0));
+            }
+            else {
+                freq.get(key).setString1Value(freq.get(key).getString1Value() + 1);
+            }
+        }
+        for (Character key : string2.toCharArray()) {
+            if (!freq.containsKey(key)) {
+                return Boolean.FALSE.toString();
+            }
+            else {
+                freq.get(key).setString2Value(freq.get(key).getString2Value() + 1);
+            }
+        }
+        for (Character key : freq.keySet()) {
+            PermValue value = freq.get(key);
+            if (value.getString1Value() != value.getString2Value()) {
+                return Boolean.FALSE.toString();
+            }
+        }
+        return Boolean.TRUE.toString();
+    }
+
+    public class PermValue {
+        private Integer string1Value;
+        private Integer string2Value;
+        public PermValue(final Integer string1Value, final Integer string2Value) {
+            this.string1Value = string1Value;
+            this.string2Value = string2Value;
+        }
+
+        public Integer getString1Value() {
+            return string1Value;
+        }
+
+        public void setString1Value(Integer string1Value) {
+            this.string1Value = string1Value;
+        }
+
+        public Integer getString2Value() {
+            return string2Value;
+        }
+
+        public void setString2Value(Integer string2Value) {
+            this.string2Value = string2Value;
+        }
     }
 }

@@ -44,4 +44,23 @@ public class IntegrationTest {
                 .get(Saying.class);
         assertEquals("Hello, " + name.get() + "!", saying.getContent());
     }
+
+    @Test
+    public void testPermutationCompare() {
+        assertEquals(Boolean.TRUE.toString(), permutationCompareRestCall("foo", "oof"));
+        assertEquals(Boolean.TRUE.toString(), permutationCompareRestCall("a", "a"));
+        assertEquals(Boolean.FALSE.toString(), permutationCompareRestCall("a", "aa"));
+        assertEquals(Boolean.FALSE.toString(), permutationCompareRestCall("aa", "a"));
+        assertEquals(Boolean.TRUE.toString(), permutationCompareRestCall("bbaaa", "ababa"));
+        assertEquals(Boolean.FALSE.toString(), permutationCompareRestCall("ab", "cab"));
+    }
+
+    private String permutationCompareRestCall(final String string1, final String string2) {
+        final String result = client.target("http://localhost:" + RULE.getLocalPort() + "/hello-world/permutationCompare")
+                .queryParam("string1", string1)
+                .queryParam("string2", string2)
+                .request()
+                .get(String.class);
+        return result;
+    }
 }
