@@ -1,6 +1,7 @@
 package com.example.helloworld.resources;
 
 import com.example.helloworld.core.Saying;
+import com.example.helloworld.core.TwoDimensionalArray;
 import com.example.helloworld.permutations.Permutate;
 import com.example.helloworld.permutations.PermutateV2;
 import com.google.common.base.Optional;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,6 +98,68 @@ public class HelloWorldResource {
             }
         }
         return Boolean.TRUE.toString();
+    }
+
+    @POST
+    @Timed
+    @Path("/traverseCounterClockWise")
+    public List<Integer> traverseCounterClockWise(TwoDimensionalArray input) {
+        List<Integer> result = new ArrayList<>();
+        List<List<Integer>> raw = input.getTwoDimensionalArray();
+
+        if (raw.size() == 0 || raw.get(0).size() == 0) {
+            return result;
+        }
+
+        int left = 0;
+        int right = raw.get(0).size() - 1;
+        int top = 0;
+        int bottom = raw.size() - 1;
+
+        while(left <= right && top <= bottom) {
+
+            printDown(top, bottom, left, raw, result);
+            left++;
+            if (left > right) {break;}
+
+            printRight(left, right, bottom, raw, result);
+            bottom--;
+            if (top > bottom) { break; }
+
+            printUp(bottom, top, right, raw, result);
+            right--;
+            if (left > right) { break; }
+
+            printLeft(right, left, top, raw, result);
+            top++;
+            if (top > bottom) { break; }
+        }
+
+        return result;
+    }
+
+    private void printDown(int startY, int finishY, int staticX, List<List<Integer>> raw, List<Integer> result) {
+        for(int i = startY; i <= finishY; i++) {
+            result.add(raw.get(i).get(staticX));
+        }
+    }
+
+    private void printRight(int startX, int finishX, int staticY, List<List<Integer>> raw, List<Integer> result) {
+        for(int i = startX; i <= finishX; i++) {
+            result.add(raw.get(staticY).get(i));
+        }
+    }
+
+    private void printUp(int startY, int finishY, int staticX, List<List<Integer>> raw, List<Integer> result) {
+        for(int i = startY; i >= finishY; i--) {
+            result.add(raw.get(i).get(staticX));
+        }
+    }
+
+    private void printLeft(int startX, int finishX, int staticY, List<List<Integer>> raw, List<Integer> result) {
+        for(int i = startX; i >= finishX; i--) {
+            result.add(raw.get(staticY).get(i));
+        }
     }
 
     public class PermValue {

@@ -1,8 +1,10 @@
 package com.example.helloworld;
 
+import com.example.helloworld.core.TwoDimensionalArray;
 import com.google.common.base.Optional;
 
 import com.example.helloworld.core.Saying;
+import com.google.common.collect.ImmutableList;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import org.junit.After;
@@ -12,6 +14,9 @@ import org.junit.Test;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
+
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -79,5 +84,20 @@ public class IntegrationTest {
                 "http://localhost:" + RULE.getLocalPort() + "/hello-world/uniqueCheck/" + input
         ).request().get(String.class);
         return result;
+    }
+
+    @Test
+    public void testTraverseCounterClockWise() {
+        List<List<Integer>> testArray = new ArrayList();
+        testArray.add(ImmutableList.of(1, 2, 3));
+        testArray.add(ImmutableList.of(4, 5, 6));
+        testArray.add(ImmutableList.of(7, 8, 9));
+
+        TwoDimensionalArray testInput = new TwoDimensionalArray(testArray);
+        final List<Integer> result = client.target(
+                "http://localhost:" + RULE.getLocalPort() + "/hello-world/traverseCounterClockWise/"
+        ).request().post(Entity.json(testInput), List.class);
+
+        assertEquals(ImmutableList.of(1,4,7,8,9,6,3,2,5), result);
     }
 }
