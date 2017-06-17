@@ -63,4 +63,21 @@ public class IntegrationTest {
                 .get(String.class);
         return result;
     }
+
+    @Test
+    public void testUniqueCheck() {
+        assertEquals("Unique", uniqueCheckHelper("a"));
+        assertEquals("Unique", uniqueCheckHelper("ab"));
+        assertEquals("a NotUnique 2", uniqueCheckHelper("aa"));
+        assertEquals("a NotUnique 2", uniqueCheckHelper("abca"));
+        assertEquals("a NotUnique 3", uniqueCheckHelper("abcadea"));
+
+    }
+
+    private String uniqueCheckHelper(String input) {
+        final String result = client.target(
+                "http://localhost:" + RULE.getLocalPort() + "/hello-world/uniqueCheck/" + input
+        ).request().get(String.class);
+        return result;
+    }
 }

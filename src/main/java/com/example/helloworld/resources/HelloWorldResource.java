@@ -5,6 +5,8 @@ import com.example.helloworld.permutations.Permutate;
 import com.example.helloworld.permutations.PermutateV2;
 import com.google.common.base.Optional;
 import com.codahale.metrics.annotation.Timed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,6 +22,8 @@ public class HelloWorldResource {
     private final String template;
     private final String defaultName;
     private final AtomicLong counter;
+
+    private static final Logger LOG = LoggerFactory.getLogger(HelloWorldResource.class);
 
     public HelloWorldResource(String template, String defaultName) {
         this.template = template;
@@ -48,6 +52,26 @@ public class HelloWorldResource {
     public List<String> calcPermutationV2(@QueryParam("input") String input) {
         PermutateV2 permutate = new PermutateV2();
         return permutate.calcuatePermutations(input);
+    }
+
+    @GET
+    @Timed
+    @Path("/uniqueCheck/{input}")
+    public String uniqueCheck(@PathParam("input") String input){
+        LOG.debug("uniqueCheck:{}", input);
+        HashMap<Character, Integer> charMap = new HashMap<>();
+        for (char inputChar: input.toCharArray()) {
+            LOG.debug("uniqueCheck inputChar:{}", inputChar);
+            charMap.computeIfAbsent(inputChar, character -> charMap.put(character, 0));
+            charMap.computeIfPresent(inputChar, (character, value) -> value+1);
+        }
+        for (Character k: charMap.keySet()) {
+            LOG.debug("uniqueCheck key:{} value:{}", k, charMap.get(k));
+            if (charMap.get(k) > 1) {
+                return k + " NotUnique " + charMap.get(k);
+            }
+        }
+        return "Unique";
     }
 
     @GET
