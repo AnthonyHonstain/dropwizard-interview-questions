@@ -21,7 +21,7 @@ these are toy solutions created to help practice interviewing (getting interview
 It is recorded here only for my own records, and it's usefulness for others is not really considered.
 
 * Binary Tree - check if a binary tree is balanced.
- * Solution to CrackingTheCodingInterview problem 4.4 - solution produced on whiteboard under timelimit.
+  * Solution to CrackingTheCodingInterview problem 4.4 - solution produced on whiteboard under timelimit.
 * Traverse a 2D array counter clockwise
- * Problem encountered in interview loop.
+  * Problem encountered in interview loop.
  
