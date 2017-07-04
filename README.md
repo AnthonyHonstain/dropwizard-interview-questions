@@ -14,3 +14,14 @@ We will be using maven-jar-plugin and maven-shade-plugin to construct a jar file
 mvn package
 java -jar target/dropwizard-interview-questions-0.0.1-SNAPSHOT.jar server hello-world.yml
 ```
+
+# Solutions
+This is just a rough overview of the mish-mash of solutions coded up in here. *TAKE IT WITH A GRAIN OF SALT*, 
+these are toy solutions created to help practice interviewing (getting interviewed and conducting interviews).
+It is recorded here only for my own records, and it's usefulness for others is not really considered.
+
+* Binary Tree - check if a binary tree is balanced.
+ * Solution to CrackingTheCodingInterview problem 4.4 - solution produced on whiteboard under timelimit.
+* Traverse a 2D array counter clockwise
+ * Problem encountered in interview loop.
+ 
