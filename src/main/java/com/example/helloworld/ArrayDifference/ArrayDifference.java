@@ -6,17 +6,7 @@ import java.util.List;
 
 public class ArrayDifference {
 
-    public class MergeObject {
-        private int value;
-        private String source;
-
-        public MergeObject(int value, String source) {
-            this.value = value;
-            this.source = source;
-        }
-    }
-
-    public List<MergeObject> sortedMerge(List<Integer> A,List<Integer> B) {
+    public static List<MergeObject> sortedMerge(List<Integer> A,List<Integer> B) {
         int indexA = 0;
         int indexB = 0;
         List<MergeObject> result = new ArrayList<>();
@@ -48,7 +38,7 @@ public class ArrayDifference {
      * logging, or maybe because I was trying to prepare for a generalized solution
      * to support more than two arrays, who knows, but it is certainly wrong.
      */
-    public Integer findSmallestDiffTerrible(List<Integer> A, List<Integer> B) {
+    public static Integer findSmallestDiffTerrible(List<Integer> A, List<Integer> B) {
         Integer result = null;
         Collections.sort(A);
         Collections.sort(B);
@@ -60,8 +50,8 @@ public class ArrayDifference {
                 prev = element;
                 continue;
             }
-            if (element.source != prev.source) {
-                int diff = Math.abs(element.value - prev.value);
+            if (element.getSource() != prev.getSource()) {
+                int diff = Math.abs(element.getValue() - prev.getValue());
                 if (result == null) {
                     result = diff;
                 } else if (diff < result) {
@@ -71,5 +61,27 @@ public class ArrayDifference {
             prev = element;
         }
         return result;
+    }
+
+    public static Integer findSmallestDiff(List<Integer> A, List<Integer> B) {
+        int minDiff = Integer.MAX_VALUE;
+        int currentA = 0;
+        int currentB = 0;
+
+        Collections.sort(A);
+        Collections.sort(B);
+
+        while (currentA < A.size() && currentB < B.size()) {
+            int diff = Math.abs(A.get(currentA) - B.get(currentB));
+            minDiff = Math.min(minDiff, diff);
+
+            // Increment the smaller.
+            if (A.get(currentA) < B.get(currentB)) {
+                currentA++;
+            } else {
+                currentB++;
+            }
+        }
+        return minDiff;
     }
 }
