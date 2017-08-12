@@ -1,4 +1,4 @@
-package com.example.helloworld.ArrayDifference;
+package com.example.helloworld.arrayDifference;
 
 public class MergeObject {
     private int value;

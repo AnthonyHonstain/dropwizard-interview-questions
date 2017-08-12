@@ -5,8 +5,8 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.helloworld.ArrayDifference.ArrayDifference.findSmallestDiff;
-import static com.example.helloworld.ArrayDifference.ArrayDifference.findSmallestDiffTerrible;
+import static com.example.helloworld.arrayDifference.ArrayDifference.findSmallestDiff;
+import static com.example.helloworld.arrayDifference.ArrayDifference.findSmallestDiffTerrible;
 import static org.junit.Assert.assertEquals;
 
 public class ArrayDifferenceTest {

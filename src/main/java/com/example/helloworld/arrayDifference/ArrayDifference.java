@@ -1,4 +1,4 @@
-package com.example.helloworld.ArrayDifference;
+package com.example.helloworld.arrayDifference;
 
 import java.util.ArrayList;
 import java.util.Collections;
