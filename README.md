@@ -4,7 +4,8 @@ A sample/skeleton to serve as a starting off point for a new dropwizard service,
 This repositories only purpose is as a learning tool, none of algorithms should considered correct or optimal.
 
 Blog post walking through this setup - http://honstain.com/new-dropwizard-1-0-5-java-service/
-* Updated to dropwizzard 1.0.6
+* ~~Updated to dropwizzard 1.0.6~~
+* Updated to dropwizard 1.2.4
 
 ## Build and Run Locally
 Building and running a basic dropwizard service as a JAR file.
@@ -20,8 +21,11 @@ This is just a rough overview of the mish-mash of solutions coded up in here. *T
 these are toy solutions created to help practice interviewing (getting interviewed and conducting interviews).
 It is recorded here only for my own records, and it's usefulness for others is not really considered.
 
-* Binary Tree - check if a binary tree is balanced.
+* `binaryTree` Binary Tree - check if a binary tree is balanced.
   * Solution to CrackingTheCodingInterview problem 4.4 - solution produced on whiteboard under timelimit.
-* Traverse a 2D array counter clockwise
+* `HelloWorldResource.traverseCounterClockWise` Traverse a 2D array counter clockwise
   * Problem encountered in interview loop.
- 
+* `lrucache` Least Recently Used Cache
+  * A toy implementation based on an interview question.
+* `lrucacheV2` Least Recently Used Cache - Show stopping bug
+  * A toy implementation based on an interview question, with a serious flaw.
