@@ -78,6 +78,22 @@ public class HelloWorldResource {
 
     @GET
     @Timed
+    @Path("/uniqueCheckV2/{input}")
+    public String uniqueCheckV2(@PathParam("input") String input){
+        LOG.debug("uniqueCheckV2:{}", input);
+        for (int i = 0; i < input.length() - 1; i++) {
+            for (int j = i + 1; j < input.length(); j++) {
+                LOG.debug("uniqueCheckV2: {} {} {} {}", i, input.charAt(i), j, input.charAt(j));
+                if (input.charAt(i) == input.charAt(j)) {
+                    return "NotUnique";
+                }
+            }
+        }
+        return "Unique";
+    }
+
+    @GET
+    @Timed
     @Path("/permutationCompare")
     public String permutationCompare(@QueryParam("string1") String string1, @QueryParam("string2") String string2) {
         Map<Character, PermValue> freq = new HashMap<>();
