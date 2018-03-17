@@ -21,6 +21,9 @@ This is just a rough overview of the mish-mash of solutions coded up in here. *T
 these are toy solutions created to help practice interviewing (getting interviewed and conducting interviews).
 It is recorded here only for my own records, and it's usefulness for others is not really considered.
 
+* `HellowWorldResource` A grab bag of random algorithms implemented in the dropwizard resource
+  * `uniqueCheck` Algorithm to check is a string has all unique characters
+  * `uniqueCheckV2` Algorithm to check is a string has all unique characters
 * `binaryTree` Binary Tree - check if a binary tree is balanced.
   * Solution to CrackingTheCodingInterview problem 4.4 - solution produced on whiteboard under timelimit.
 * `HelloWorldResource.traverseCounterClockWise` Traverse a 2D array counter clockwise
@@ -29,3 +32,65 @@ It is recorded here only for my own records, and it's usefulness for others is n
   * A toy implementation based on an interview question.
 * `lrucacheV2` Least Recently Used Cache - Show stopping bug
   * A toy implementation based on an interview question, with a serious flaw.
+
+# Insomnia Starter Config
+https://insomnia.rest/ A http client to debug and experiment with the dropwizard API.
+```json
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-03-17T21:26:21.615Z",
+	"__export_source": "insomnia.desktop.app:v5.14.9",
+	"resources": [
+		{
+			"_id": "wrk_7b5c82f969224d428cac1adfd11c42fb",
+			"created": 1521317545070,
+			"description": "",
+			"modified": 1521317545070,
+			"name": "Insomnia",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_c264721f22684cd5bf3a1ce27ab81b34",
+			"color": null,
+			"created": 1521317545235,
+			"data": {},
+			"isPrivate": false,
+			"modified": 1521317545235,
+			"name": "New Environment",
+			"parentId": "wrk_7b5c82f969224d428cac1adfd11c42fb",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_709b6b109d914ae0ae7a555d3417af45",
+			"cookies": [],
+			"created": 1521317545327,
+			"modified": 1521317545327,
+			"name": "Default Jar",
+			"parentId": "wrk_7b5c82f969224d428cac1adfd11c42fb",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "req_0ac646c5a4814eec87e09029e9ce7ac1",
+			"authentication": {},
+			"body": {},
+			"created": 1521317633643,
+			"description": "",
+			"headers": [],
+			"metaSortKey": -1521317633644,
+			"method": "GET",
+			"modified": 1521321842816,
+			"name": "Dropwizard Local",
+			"parameters": [],
+			"parentId": "wrk_7b5c82f969224d428cac1adfd11c42fb",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:8080/hello-world/uniqueCheckV2/ABCDEFCG",
+			"_type": "request"
+		}
+	]
+}
+```
