@@ -6,6 +6,8 @@ import com.example.helloworld.permutations.Permutate;
 import com.example.helloworld.permutations.PermutateV2;
 import com.google.common.base.Optional;
 import com.codahale.metrics.annotation.Timed;
+import org.apache.commons.lang3.tuple.MutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -114,6 +116,35 @@ public class HelloWorldResource {
             }
         }
         return Boolean.TRUE.toString();
+    }
+
+    @GET
+    @Timed
+    @Path("/permutationCompareV2")
+    public String permutationCompareV2(@QueryParam("string1") String string1, @QueryParam("string2") String string2) {
+        HashMap<Character, MutablePair<Integer,Integer>> freq = new HashMap<>();
+        for (char char1 : string1.toCharArray()) {
+            if (freq.containsKey(char1)) {
+                freq.get(char1).left += 1;
+            }
+            else {
+                freq.put(char1, new MutablePair(1, 0));
+            }
+        }
+        for (char char2 : string2.toCharArray()) {
+            if (freq.containsKey(char2)) {
+                freq.get(char2).right += 1;
+            }
+            else {
+                return "False";
+            }
+        }
+        for (Pair<Integer,Integer> value : freq.values()) {
+            if (value.getLeft() != value.getRight()) {
+                return "False";
+            }
+        }
+        return "True";
     }
 
     @POST

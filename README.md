@@ -24,6 +24,9 @@ It is recorded here only for my own records, and it's usefulness for others is n
 * `HellowWorldResource` A grab bag of random algorithms implemented in the dropwizard resource
   * `uniqueCheck` Algorithm to check is a string has all unique characters
   * `uniqueCheckV2` Algorithm to check is a string has all unique characters
+  * `permutationCompare` compare two strings identify if they are a permutation of each other
+  * `permutationCompareV2` compare two strings identify if they are a permutation of each other
+    * Example url localhost:8080/hello-world/permutationCompareV2?string1=AAAB&string2=ABAA
 * `binaryTree` Binary Tree - check if a binary tree is balanced.
   * Solution to CrackingTheCodingInterview problem 4.4 - solution produced on whiteboard under timelimit.
 * `HelloWorldResource.traverseCounterClockWise` Traverse a 2D array counter clockwise
