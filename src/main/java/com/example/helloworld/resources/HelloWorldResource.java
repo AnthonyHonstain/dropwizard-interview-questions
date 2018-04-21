@@ -6,6 +6,7 @@ import com.example.helloworld.permutations.Permutate;
 import com.example.helloworld.permutations.PermutateV2;
 import com.google.common.base.Optional;
 import com.codahale.metrics.annotation.Timed;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
@@ -40,6 +41,36 @@ public class HelloWorldResource {
     public Saying sayHello(@QueryParam("name") Optional<String> name) {
         final String value = String.format(template, name.or(defaultName));
         return new Saying(counter.incrementAndGet(), value);
+    }
+
+    @POST
+    @Timed
+    @Path("/iteration")
+    public void iterations(@QueryParam("input") String input) {
+        // Working through different styles of nested for loops,
+        // attempting to visualize the differences.
+        for (int i = input.length() - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                LOG.debug("{}MINE ({},{}) {}",
+                        StringUtils.leftPad(" ", input.length() - i),
+                        j,
+                        i,
+                        input.substring(j, i+1));
+            }
+        }
+        LOG.debug("");
+        for (int i = input.length(); i > 0; i--) {
+            for (int j = 0; j <= input.length() - i; j++) {
+                // We stop inner loop at the difference between size and i.
+                LOG.debug("{}BOOK ({},{}) {} j <= input.length()->{} - i->{}",
+                        StringUtils.leftPad(" ", input.length() - i),
+                        j,
+                        i+j-1,
+                        input.substring(j, i+j),
+                        input.length(),
+                        i);
+            }
+        }
     }
 
     @GET
