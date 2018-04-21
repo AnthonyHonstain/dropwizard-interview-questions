@@ -1,5 +1,6 @@
 package com.example.helloworld;
 
+import com.example.helloworld.binaryTree.BinarySearchCheck;
 import com.example.helloworld.binaryTree.BinaryTree;
 import com.example.helloworld.binaryTree.Node;
 import com.example.helloworld.binaryTree.UnbalancedNodeException;
@@ -15,13 +16,13 @@ import static org.junit.Assert.assertTrue;
 public class BinaryTreeTest {
 
     @Test
-    public void getHeightBasicTest() {
+    public void getHeightBasic() {
         Node root = new Node(10, null, null);
         assertEquals(BinaryTree.getHeight(root), 1);
     }
 
     @Test
-    public void getHeightMultipleBalancedTest() {
+    public void getHeightMultipleBalanced() {
         Node root = new Node(10,
                 new Node(5, null, null), new Node(15, null, null));
         assertEquals(BinaryTree.getHeight(root), 2);
@@ -31,28 +32,56 @@ public class BinaryTreeTest {
     }
 
     @Test(expected = UnbalancedNodeException.class)
-    public void getHeightUnbalancedTest() {
+    public void getHeightUnbalanced() {
         Node root = new Node(10,
                 null, new Node(15, null, new Node(20, null, null)));
         BinaryTree.getHeight(root);
     }
 
     @Test
-    public void checkBalancedBasicTest() {
+    public void checkBalancedBasic() {
         Node root = new Node(10, null, null);
         assertTrue(BinaryTree.checkBalanced(root));
     }
 
     @Test
-    public void checkBalancedComplicatedTest() {
+    public void checkBalancedComplicated() {
         Node root = getBalancedBinaryTreeDepthTree();
         assertTrue(BinaryTree.checkBalanced(root));
     }
 
     @Test
-    public void checkBalancedFalseTest() {
+    public void checkBalancedFalse() {
         Node root = getUnbalancedBinaryTree();
         assertFalse(BinaryTree.checkBalanced(root));
+    }
+
+    @Test
+    public void checkTreeRecursive() {
+        Node root = getBalancedBinaryTreeDepthTree();
+        BinarySearchCheck binarySearchCheck = new BinarySearchCheck();
+        BinaryTree.checkTreeRecursive(root, binarySearchCheck);
+        assertTrue(binarySearchCheck.isBinarySearch());
+
+        root = getUnbalancedBinaryTree();
+        binarySearchCheck = new BinarySearchCheck();
+        BinaryTree.checkTreeRecursive(root, binarySearchCheck);
+        assertTrue(binarySearchCheck.isBinarySearch());
+    }
+
+    @Test
+    public void checkTreeRecursiveNotBinarySearch() {
+        /*
+              10
+             /  \
+            15   20
+         */
+        Node root = new Node(10, null, null);
+        root.setlChild(new Node(15, null, null));
+        root.setrChild(new Node(20, null, null));
+        BinarySearchCheck binarySearchCheck = new BinarySearchCheck();
+        BinaryTree.checkTreeRecursive(root, binarySearchCheck);
+        assertFalse(binarySearchCheck.isBinarySearch());
     }
 
     private Node getBalancedBinaryTreeDepthTree() {

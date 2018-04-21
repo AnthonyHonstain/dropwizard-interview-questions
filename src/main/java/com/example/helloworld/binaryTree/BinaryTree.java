@@ -31,4 +31,18 @@ public class BinaryTree {
         }
         return true;
     }
+
+    public static void checkTreeRecursive(Node node, BinarySearchCheck binaryCheck) {
+        if (node == null) {
+            return;
+        }
+        checkTreeRecursive(node.getlChild(), binaryCheck);
+        if (node.getValue() < binaryCheck.getMax()) {
+            binaryCheck.setBinarySearch(false);
+        }
+        else {
+            binaryCheck.setMax(node.getValue());
+        }
+        checkTreeRecursive(node.getrChild(), binaryCheck);
+    }
 }

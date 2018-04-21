@@ -29,6 +29,7 @@ It is recorded here only for my own records, and it's usefulness for others is n
     * Example url localhost:8080/hello-world/permutationCompareV2?string1=AAAB&string2=ABAA
 * `binaryTree` Binary Tree - check if a binary tree is balanced.
   * Solution to CrackingTheCodingInterview problem 4.4 - solution produced on whiteboard under timelimit.
+  * `checkTreeRecursive` to evaluate if a given binary tree is a binary search tree.
 * `HelloWorldResource.traverseCounterClockWise` Traverse a 2D array counter clockwise
   * Problem encountered in interview loop.
 * `lrucache` Least Recently Used Cache
