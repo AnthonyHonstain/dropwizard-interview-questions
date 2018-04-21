@@ -2,6 +2,7 @@ package com.example.helloworld;
 
 import com.example.helloworld.binaryTree.BinaryTree;
 import com.example.helloworld.binaryTree.Node;
+import com.example.helloworld.binaryTree.UnbalancedNodeException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -29,7 +30,7 @@ public class BinaryTreeTest {
         assertEquals(tree.getHeight(root), 3);
     }
 
-    @Test(expected = BinaryTree.UnbalancedNodeException.class)
+    @Test(expected = UnbalancedNodeException.class)
     public void getHeightUnbalancedTest() {
         Node root = new Node(10,
                 null, new Node(15, null, new Node(20, null, null)));
@@ -46,35 +47,45 @@ public class BinaryTreeTest {
 
     @Test
     public void checkBalancedComplicatedTest() {
-        /*
-                   10
-                 /    \
-                5      15
-                 \     /
-                  8   12
-         */
-        Node root = new Node(10, null, null);
-        root.setlChild(new Node(5, null, new Node(8, null, null)));
-        root.setrChild(new Node(15, new Node(12, null, null), null));
+        Node root = getBalancedBinaryTreeDepthTree();
         BinaryTree tree = new BinaryTree();
         assertEquals(tree.checkBalanced(root), true);
     }
 
     @Test
     public void checkBalancedFalseTest() {
-        /*
-                   10
-                 /    \
-                5      15
-                       /
-                      12
-                       \
-                        13
-         */
+        Node root = getUnbalancedBinaryTree();
+        BinaryTree tree = new BinaryTree();
+        assertEquals(tree.checkBalanced(root), false);
+    }
+
+    private Node getBalancedBinaryTreeDepthTree() {
+    /*
+               10
+             /    \
+            5      15
+             \     /
+              8   12
+     */
+        Node root = new Node(10, null, null);
+        root.setlChild(new Node(5, null, new Node(8, null, null)));
+        root.setrChild(new Node(15, new Node(12, null, null), null));
+        return root;
+    }
+
+    private Node getUnbalancedBinaryTree() {
+    /*
+               10
+             /    \
+            5      15
+                   /
+                  12
+                   \
+                    13
+     */
         Node root = new Node(10, null, null);
         root.setlChild(new Node(5, null, null));
         root.setrChild(new Node(15, new Node(12, null, new Node(13, null, null)), null));
-        BinaryTree tree = new BinaryTree();
-        assertEquals(tree.checkBalanced(root), false);
+        return root;
     }
 }

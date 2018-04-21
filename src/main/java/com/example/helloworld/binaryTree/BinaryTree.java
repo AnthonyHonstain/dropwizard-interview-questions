@@ -5,7 +5,7 @@ package com.example.helloworld.binaryTree;
  */
 public class BinaryTree {
 
-    public int getHeight(Node node) {
+    public static int getHeight(Node node) {
         int leftHeight = 0;
         int rightHeight = 0;
 
@@ -22,9 +22,7 @@ public class BinaryTree {
         return Math.max(leftHeight, rightHeight) + 1;
     }
 
-    public class UnbalancedNodeException extends RuntimeException {}
-
-    public boolean checkBalanced(Node root) {
+    public static boolean checkBalanced(Node root) {
         try {
             getHeight(root);
         }
