@@ -6,6 +6,8 @@ import com.example.helloworld.binaryTree.UnbalancedNodeException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Anthony Honstain on 7/4/17.
@@ -15,48 +17,42 @@ public class BinaryTreeTest {
     @Test
     public void getHeightBasicTest() {
         Node root = new Node(10, null, null);
-        BinaryTree tree = new BinaryTree();
-        assertEquals(tree.getHeight(root), 1);
+        assertEquals(BinaryTree.getHeight(root), 1);
     }
 
     @Test
     public void getHeightMultipleBalancedTest() {
         Node root = new Node(10,
                 new Node(5, null, null), new Node(15, null, null));
-        BinaryTree tree = new BinaryTree();
-        assertEquals(tree.getHeight(root), 2);
+        assertEquals(BinaryTree.getHeight(root), 2);
 
         root.getrChild().setlChild(new Node(12, null, null));
-        assertEquals(tree.getHeight(root), 3);
+        assertEquals(BinaryTree.getHeight(root), 3);
     }
 
     @Test(expected = UnbalancedNodeException.class)
     public void getHeightUnbalancedTest() {
         Node root = new Node(10,
                 null, new Node(15, null, new Node(20, null, null)));
-        BinaryTree tree = new BinaryTree();
-        tree.getHeight(root);
+        BinaryTree.getHeight(root);
     }
 
     @Test
     public void checkBalancedBasicTest() {
         Node root = new Node(10, null, null);
-        BinaryTree tree = new BinaryTree();
-        assertEquals(tree.checkBalanced(root), true);
+        assertTrue(BinaryTree.checkBalanced(root));
     }
 
     @Test
     public void checkBalancedComplicatedTest() {
         Node root = getBalancedBinaryTreeDepthTree();
-        BinaryTree tree = new BinaryTree();
-        assertEquals(tree.checkBalanced(root), true);
+        assertTrue(BinaryTree.checkBalanced(root));
     }
 
     @Test
     public void checkBalancedFalseTest() {
         Node root = getUnbalancedBinaryTree();
-        BinaryTree tree = new BinaryTree();
-        assertEquals(tree.checkBalanced(root), false);
+        assertFalse(BinaryTree.checkBalanced(root));
     }
 
     private Node getBalancedBinaryTreeDepthTree() {
