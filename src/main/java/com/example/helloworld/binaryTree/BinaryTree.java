@@ -1,5 +1,7 @@
 package com.example.helloworld.binaryTree;
 
+import java.util.List;
+
 /**
  * Created by Anthony Honstain on 7/4/17.
  */
@@ -44,5 +46,36 @@ public class BinaryTree {
             binaryCheck.setMax(node.getValue());
         }
         checkTreeRecursive(node.getrChild(), binaryCheck);
+    }
+
+    public static Node constructFromSortedArray(List<Integer> array) {
+        Node root = recursiveBuild(array, 0, array.size() - 1);
+        return root;
+    }
+
+    public static Node recursiveBuild(List<Integer> array, int start, int end) {
+        int length = end - start + 1;
+        if (length <= 0) { return null; }
+        if (length == 1) { return new Node(array.get(start), null, null); }
+
+        int mid = Math.floorDiv(length, 2) + start;
+        Node newNode = new Node(
+                array.get(mid),
+                recursiveBuild(array, start, mid - 1),
+                recursiveBuild(array, mid + 1, end)
+        );
+        return newNode;
+    }
+
+    public static Node recursiveBuildBook(List<Integer> array, int start, int end) {
+        if (end < start) { return null; }
+
+        int mid = Math.floorDiv(start + end, 2);
+        Node newNode = new Node(
+                array.get(mid),
+                recursiveBuild(array, start, mid - 1),
+                recursiveBuild(array, mid + 1, end)
+        );
+        return newNode;
     }
 }

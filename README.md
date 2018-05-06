@@ -30,6 +30,8 @@ It is recorded here only for my own records, and it's usefulness for others is n
 * `binaryTree` Binary Tree - check if a binary tree is balanced.
   * Solution to CrackingTheCodingInterview problem 4.4 - solution produced on whiteboard under timelimit.
   * `checkTreeRecursive` to evaluate if a given binary tree is a binary search tree.
+  * Solution to problem 4.2 `recursiveBuild` will construct a binary search tree of minimum height from
+    a sorted array of integers with repetition.
 * `HelloWorldResource.traverseCounterClockWise` Traverse a 2D array counter clockwise
   * Problem encountered in interview loop.
 * `lrucache` Least Recently Used Cache
