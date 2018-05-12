@@ -40,6 +40,7 @@ It is recorded here only for my own records, and it's usefulness for others is n
   * A toy implementation based on an interview question, with a serious flaw.
 * `FindMaxSubarray` Solution and tests to the interview question about finding the longest subarray with an equal 
 number of letters and numbers in an array.
+* `interviewSort.Sorting` an interview problem to merge to sorted arrays.
 
 # Insomnia Starter Config
 https://insomnia.rest/ A http client to debug and experiment with the dropwizard API.
